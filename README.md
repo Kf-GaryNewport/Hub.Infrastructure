@@ -23,4 +23,4 @@
 ### Recovery
 
 
-![DEMO](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/Kf-GaryNewport/Hub.Infrastructure/master/puml/WopiBalanced.puml)
+![DEMO](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/Kf-GaryNewport/Hub.Infrastructure/master/puml/HubInfraNe.puml)

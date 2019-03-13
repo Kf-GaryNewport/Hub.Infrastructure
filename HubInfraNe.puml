@@ -1,0 +1,67 @@
+@startuml WOPI
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+!define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/Databases/AzureCosmosDb.puml
+!includeurl AzurePuml/Identity/AzureActiveDirectory.puml
+!includeurl AzurePuml/Storage/AzureBlobStorage.puml
+!includeurl AzurePuml/Web/AzureWebApp.puml
+!includeurl AzurePuml/Security/AzureKeyVault.puml
+!includeurl AzurePuml/DevOps/AzureApplicationInsights.puml
+!includeurl AzurePuml/Networking/AzureTrafficManager.puml
+!includeurl AzurePuml/Networking/AzureVPNGateway.puml
+!includeurl AzurePuml/Networking/AzureVirtualNetwork.puml
+!includeurl AzurePuml/Compute/AzureVirtualMachine.puml
+!includeurl AzurePuml/Storage/AzureDiskStorage.puml
+!includeurl AzurePuml/Storage/AzureManagedDisks.puml
+
+
+frame "Azure Northern Europe" as azRgNe {
+
+    frame "RG Antares-Alpha-NEU-RG " as azRgAlNe {
+        AzureWebApp( azWaNe, "Web Jobs", "Antares-Alpha-NEU-WebJobs-AP")
+       
+        
+        AzureVirtualMachine( azVm01, "ES", "Antares-Alpha-NEU-ES-VM01")
+        AzureVirtualMachine( azVm02, "IIS", "Antares-Alpha-NEU-IIS-VM01")
+        AzureVirtualMachine( azVm03, "SQL", "Antares-Alpha-NEU-SQL-VM01")
+        AzureVirtualMachine( azVm04, "DNS", "NE-Alpha-DNS-01")
+        
+        AzureDiskStorage( azDsDD01, "", "Antares-Alpha-NEU-ES-VM01-DataDisk01")
+        AzureDiskStorage( azDsOS01, "", "Antares-Alpha-NEU-ES-VM01-OsDisk01")
+
+        AzureDiskStorage( azDsOS02, "", "Antares-Alpha-NEU-IIS-VM01-OSDisk01")
+
+        AzureDiskStorage( azDsDD03, "", "Antares-Alpha-NEU-SQL-VM01-DataDisk01")
+        AzureDiskStorage( azDsOS03, "", "Antares-Alpha-NEU-SQL-VM01-OsDisk01")
+
+        AzureDiskStorage( azDsDD04, "", "NE-Alpha-DNS-01_OsDisk_1_aaf65875b7934d0384afb8cf024420db")
+        
+        AzureVPNGateway( azVpnNe, "VPN Gateway", "Antares-Alpha-NEU-Data-VNG")
+        AzureVirtualNetwork( azVn, "VNet", "Antares-Alpha-NEU-Common-VN")
+        AzureBlobStorage( azBsNe01, "File Storage", "kfaalphaneucommonst")
+        AzureBlobStorage( azBsNe02, "File Storage", "kfaalphaneugeneralst01")
+    }
+}
+
+
+azVm01 --> azDsDD01
+azVm01 --> azDsOS01
+
+azVm02 --> azDsOS02
+
+azVm03 --> azDsDD03
+azVm03 --> azDsOS03
+
+azVm04 --> azDsDD04
+
+azVn --> azVm01
+azVn --> azVm02
+azVn --> azVm03
+azVn --> azVm04
+azVpnNe --> azVn
+
+
+
+
+@enduml
