@@ -2,64 +2,88 @@
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
 !define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
 !includeurl AzurePuml/AzureCommon.puml
-!includeurl AzurePuml/Databases/AzureCosmosDb.puml
-!includeurl AzurePuml/Identity/AzureActiveDirectory.puml
-!includeurl AzurePuml/Storage/AzureBlobStorage.puml
-!includeurl AzurePuml/Web/AzureWebApp.puml
-!includeurl AzurePuml/Security/AzureKeyVault.puml
-!includeurl AzurePuml/DevOps/AzureApplicationInsights.puml
-!includeurl AzurePuml/Networking/AzureTrafficManager.puml
-!includeurl AzurePuml/Networking/AzureVPNGateway.puml
-!includeurl AzurePuml/Networking/AzureVirtualNetwork.puml
-!includeurl AzurePuml/Compute/AzureVirtualMachine.puml
-!includeurl AzurePuml/Storage/AzureDiskStorage.puml
-!includeurl AzurePuml/Storage/AzureManagedDisks.puml
+!includeurl AzurePuml/Databases/all.puml
+!includeurl AzurePuml/Identity/all.puml
+!includeurl AzurePuml/Web/all.puml
+!includeurl AzurePuml/Security/all.puml
+!includeurl AzurePuml/DevOps/all.puml
+!includeurl AzurePuml/Networking/all.puml
+!includeurl AzurePuml/Compute/all.puml
+!includeurl AzurePuml/Storage/all.puml
 
+left to right direction
 
 frame "Azure Northern Europe" as azRgNe {
 
+    AzureVPNGateway( VpnLcl, "Local", "KnightFrank-Antares-NE-IE-Lng-DMZ-230 (52.138.161.180)")
+    
     frame "RG Antares-Alpha-NEU-RG " as azRgAlNe {
-        AzureWebApp( azWaNe, "Web Jobs", "Antares-Alpha-NEU-WebJobs-AP")
-       
         
-        AzureVirtualMachine( azVm01, "ES", "Antares-Alpha-NEU-ES-VM01")
-        AzureVirtualMachine( azVm02, "IIS", "Antares-Alpha-NEU-IIS-VM01")
-        AzureVirtualMachine( azVm03, "SQL", "Antares-Alpha-NEU-SQL-VM01")
-        AzureVirtualMachine( azVm04, "DNS", "NE-Alpha-DNS-01")
-        
-        AzureDiskStorage( azDsDD01, "", "Antares-Alpha-NEU-ES-VM01-DataDisk01")
-        AzureDiskStorage( azDsOS01, "", "Antares-Alpha-NEU-ES-VM01-OsDisk01")
-
-        AzureDiskStorage( azDsOS02, "", "Antares-Alpha-NEU-IIS-VM01-OSDisk01")
-
-        AzureDiskStorage( azDsDD03, "", "Antares-Alpha-NEU-SQL-VM01-DataDisk01")
-        AzureDiskStorage( azDsOS03, "", "Antares-Alpha-NEU-SQL-VM01-OsDisk01")
-
-        AzureDiskStorage( azDsDD04, "", "NE-Alpha-DNS-01_OsDisk_1_aaf65875b7934d0384afb8cf024420db")
-        
+        Container( azPip, "", "Antares-Alpha-NEU-Data-VNG-PIP")
         AzureVPNGateway( azVpnNe, "VPN Gateway", "Antares-Alpha-NEU-Data-VNG")
         AzureVirtualNetwork( azVn, "VNet", "Antares-Alpha-NEU-Common-VN")
         AzureBlobStorage( azBsNe01, "File Storage", "kfaalphaneucommonst")
         AzureBlobStorage( azBsNe02, "File Storage", "kfaalphaneugeneralst01")
+        
+        AzureApplicationInsights( azAi, "Application Inisghts", "Antares-Alpha-NEU-AI")
+        
+        frame "SubNet Antares-Alpha-NEU-WebAndAPI-SN" {
+
+    		    Container(azNic01, "Network Interface Card", "Antares-Alpha-NEU-ES-VM01-NIC")
+    		    AzureVirtualMachine( azVm01, "ES", "Antares-Alpha-NEU-ES-VM01")
+    		    AzureDiskStorage( azDsDD01, "", "Antares-Alpha-NEU-ES-VM01-DataDisk01")
+                AzureDiskStorage( azDsOS01, "", "Antares-Alpha-NEU-ES-VM01-OsDisk01")
+                
+                azNic01 --> azVm01
+                azVm01 --> azDsDD01
+                azVm01 --> azDsOS01
+
+    		    Container(azNic02, "Network Interface Card", "Antares-Alpha-NEU-IIS-VM01-NIC")
+    		    AzureVirtualMachine( azVm02, "IIS", "Antares-Alpha-NEU-IIS-VM01")
+                AzureDiskStorage( azDsOS02, "", "Antares-Alpha-NEU-IIS-VM01-OSDisk01")
+                
+                azNic02 --> azVm02
+                azVm02 --> azDsOS02
+    		    Container(azNic03, "Network Interface Card", "Antares-Alpha-NEU-SQL-VM01-NIC")
+    		    AzureWebApp( azWaNe, "Web Jobs", "Antares-Alpha-NEU-WebJobs-AP")
+    		    AzureVirtualMachine( azVm03, "SQL", "Antares-Alpha-NEU-SQL-VM01")
+                AzureDiskStorage( azDsDD03, "", "Antares-Alpha-NEU-SQL-VM01-DataDisk01")
+                AzureDiskStorage( azDsOS03, "", "Antares-Alpha-NEU-SQL-VM01-OsDisk01")
+                
+                azNic03 --> azVm03
+                azVm03 --> azDsDD03
+                azVm03 --> azDsOS03
+		}
+		
+		frame "SubNet Antares-Alpha-NEU-Data-SN" {
+    		frame "NE-Alpha-DNS-01-nsg" as azNsg04 {
+    		    Container(azNic04, "Network Interface Card", "ne-alpha-dns-015")
+    		    AzureVirtualMachine( azVm04, "DNS", "NE-Alpha-DNS-01")
+                AzureDiskStorage( azDsDD04, "", "NE-Alpha-DNS-01_OsDisk_1_aaf65875b7934d0384afb8cf024420db")
+                
+                azNic04 --> azVm04
+                azVm04 --> azDsDD04
+    		}
+		}
+		
+		frame "Antares-Alpha-NEU-WebAndAPI-NSG" as azNsg01 {
+    	}
+    	frame "Antares-Alpha-NEU-Management-NSG" as azNsg02 {
+    	}
+		frame "Antares-Alpha-NEU-WebJobs-NSG" as azNsg03 {
+    	}
+
+        
     }
 }
 
-
-azVm01 --> azDsDD01
-azVm01 --> azDsOS01
-
-azVm02 --> azDsOS02
-
-azVm03 --> azDsDD03
-azVm03 --> azDsOS03
-
-azVm04 --> azDsDD04
-
-azVn --> azVm01
-azVn --> azVm02
-azVn --> azVm03
-azVn --> azVm04
+azVn --> azNic01
+azVn --> azNic02
+azVn --> azNic03
+azVn --> azNic04
 azVpnNe --> azVn
+VpnLcl --> azVpnNe
+azPip -->azVpnNe
 
 
 
