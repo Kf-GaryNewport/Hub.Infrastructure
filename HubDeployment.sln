@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "HubDeployment", "HubDeployment\HubDeployment.deployproj", "{DF529AA6-99A8-4F15-BCBC-DA3E3DC9CE46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20045BD9-3433-4B75-ADC3-5A5A2ED4F12A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "puml", "puml", "{94533E70-F6E2-4557-A31E-682131E3B587}"
+	ProjectSection(SolutionItems) = preProject
+		puml\WopiBalanced.puml = puml\WopiBalanced.puml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF529AA6-99A8-4F15-BCBC-DA3E3DC9CE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF529AA6-99A8-4F15-BCBC-DA3E3DC9CE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF529AA6-99A8-4F15-BCBC-DA3E3DC9CE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF529AA6-99A8-4F15-BCBC-DA3E3DC9CE46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94533E70-F6E2-4557-A31E-682131E3B587} = {20045BD9-3433-4B75-ADC3-5A5A2ED4F12A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D86A55C-8130-4A9A-A900-A6FE44ACA711}
+	EndGlobalSection
+EndGlobal
