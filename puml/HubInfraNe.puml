@@ -19,7 +19,7 @@ frame "Azure Northern Europe" as azRgNe {
     
     frame "RG Antares-Alpha-NEU-RG " as azRgAlNe {
         
-        Container( azPip, "", "Antares-Alpha-NEU-Data-VNG-PIP")
+        Container( azPip, "Public IP", "Antares-Alpha-NEU-Data-VNG-PIP")
         AzureVPNGateway( azVpnNe, "VPN Gateway", "Antares-Alpha-NEU-Data-VNG")
         AzureVirtualNetwork( azVn, "VNet", "Antares-Alpha-NEU-Common-VN")
         AzureBlobStorage( azBsNe01, "File Storage", "kfaalphaneucommonst")
@@ -53,13 +53,14 @@ frame "Azure Northern Europe" as azRgNe {
                 azNic03 --> azVm03
                 azVm03 --> azDsDD03
                 azVm03 --> azDsOS03
+                azWaNe --> azBsNe02
 		}
 		
 		frame "SubNet Antares-Alpha-NEU-Data-SN" {
     		frame "NE-Alpha-DNS-01-nsg" as azNsg04 {
     		    Container(azNic04, "Network Interface Card", "ne-alpha-dns-015")
     		    AzureVirtualMachine( azVm04, "DNS", "NE-Alpha-DNS-01")
-                AzureDiskStorage( azDsDD04, "", "NE-Alpha-DNS-01_OsDisk_1_aaf65875b7934d0384afb8cf024420db")
+                AzureDiskStorage( azDsDD04, "", "NE-Alpha-DNS-01_OsDisk_1")
                 
                 azNic04 --> azVm04
                 azVm04 --> azDsDD04
