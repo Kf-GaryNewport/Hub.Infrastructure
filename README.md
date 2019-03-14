@@ -1,6 +1,8 @@
 # Hub.Infrastructure
 
 ## State of PLay
+* 14/03/2019
+  *
 * 13/03/2019
   * Created GitHub
   * Created PUML of current state
@@ -16,12 +18,35 @@ If we took each requirement separately then we may leave holes or cause other re
   * The build and deployment phases of the application should be consistent and idempotent. 
   * Scripts should be environment agnostic
 
+## Git
+* Develop
+** Feature
+
+![aah2](/assets/gitprocess.png)
+
+## Environments
+* Local
+  * Dev Sandbox
+* Non-Prod
+  * Merge
+  * UAT
+  * PreProd
+* Prod
+  * Prod
+### Secrets
+
+### IaaS
+* Deploy Servers
+* Patch Upgrades
+
 ### Application
 #### Initial
 #### Incremental
+
 ### Data Schema
 #### Initial
 #### Incremental
+
 ### Data
 ##### Static Data
 ##### Migrated Data
@@ -34,6 +59,7 @@ If we took each requirement separately then we may leave holes or cause other re
 ### Definition
 ### Impact
 ### Recovery
+
 
 
 ![DEMO](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/Kf-GaryNewport/Hub.Infrastructure/master/puml/HubInfraNe.puml)

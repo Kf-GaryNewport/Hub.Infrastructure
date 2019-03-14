@@ -1,5 +1,6 @@
 @startuml WOPI
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+!define ICONURL https://raw.githubusercontent.com/Roemer/plantuml-office/master/office2014
 !define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
 !includeurl AzurePuml/AzureCommon.puml
 !includeurl AzurePuml/Databases/all.puml
@@ -10,8 +11,11 @@
 !includeurl AzurePuml/Networking/all.puml
 !includeurl AzurePuml/Compute/all.puml
 !includeurl AzurePuml/Storage/all.puml
+!includeurl ICONURL/Clouds/office_365_cloud.puml
 
 left to right direction
+
+OFF_OFFICE_365_CLOUD(fred)
 
 frame "Azure Northern Europe" as azRgNe {
 

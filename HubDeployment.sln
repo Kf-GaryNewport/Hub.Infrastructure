@@ -15,6 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "puml", "puml", "{94533E70-F
 		puml\HubInfraNe.puml = puml\HubInfraNe.puml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{86F24743-4814-4C97-96EA-DC0726D33BD9}"
+	ProjectSection(SolutionItems) = preProject
+		assets\gitprocess.png = assets\gitprocess.png
+		assets\GitProcess.vsdx = assets\GitProcess.vsdx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +37,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{94533E70-F6E2-4557-A31E-682131E3B587} = {20045BD9-3433-4B75-ADC3-5A5A2ED4F12A}
+		{86F24743-4814-4C97-96EA-DC0726D33BD9} = {20045BD9-3433-4B75-ADC3-5A5A2ED4F12A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D86A55C-8130-4A9A-A900-A6FE44ACA711}
