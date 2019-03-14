@@ -1,5 +1,12 @@
 # Hub.Infrastructure
 
+## State of PLay
+* 13/03/2019
+  * Created GitHub
+  * Created PUML of current state
+  * 3 unused NSG's 
+    * James to document
+
 ## Description
 
 ## Build and Deployment
