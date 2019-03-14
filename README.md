@@ -8,8 +8,14 @@
     * James to document
 
 ## Description
+The HUB infrastructure project is a single repository, so we can address a group of essential requirements which govern the deployment and running of the HUB aspplication.
+If we took each requirement separately then we may leave holes or cause other requirements to take non ideal flows.
 
 ## Build and Deployment
+* principcals
+  * The build and deployment phases of the application should be consistent and idempotent. 
+  * Scripts should be environment agnostic
+
 ### Application
 #### Initial
 #### Incremental
